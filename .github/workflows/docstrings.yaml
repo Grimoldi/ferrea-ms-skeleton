@@ -1,0 +1,32 @@
+name: Interrogate
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "src/*.py"
+      - ".github/workflows/docstrings.yaml"
+
+permissions:
+  # Give the default GITHUB_TOKEN write permission to commit and push the
+  # added or changed files to the repository.
+  contents: write
+
+jobs:
+  check-docstrings:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Interrogate check
+        uses: JackMcKew/python-interrogate-check@main
+        with:
+            path: 'src'
+            ignore-module: true

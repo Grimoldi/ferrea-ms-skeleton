@@ -1,0 +1,40 @@
+[project]
+name = "%REPLACE%"
+version = "%REPLACE%"
+description = "%REPLACE%"
+authors = ["Eugenio Grimoldi"]
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+]
+
+[tool.poetry.dependencies]
+python = ">=3.11,<3.14"
+uvicorn = "^0.27.1"
+fastapi-utils = "^0.8.0"
+ferrea = {git = "https://github.com/Grimoldi/ferrea-lib-chassis.git", rev = "2.2.0"}
+dynaconf = {git = "https://github.com/dynaconf/dynaconf.git", rev = "32f3847"}
+typing-inspect = "^0.9.0"
+
+[tool.poetry.group.test.dependencies]
+pytest = "^8.3.5"
+httpx = "^0.28.1"
+pytest-env = "^1.1.5"
+
+[tool.ruff]
+# Allow imports relative to the "src" and "test" directories.
+src = ["src", "test"]
+
+[tool.mypy]
+mypy_path = "src"
+--namespace-packages = "True"
+
+[tool.pytest.ini_options]
+pythonpath = [
+    "./src", 
+    "./tests"
+]
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"

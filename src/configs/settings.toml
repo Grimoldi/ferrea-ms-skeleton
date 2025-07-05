@@ -1,0 +1,5 @@
+dynaconf_merge = true
+
+[ferrea_app]
+name = "%REPLACE%"
+debug = true
